@@ -1,0 +1,7 @@
+newspaper3k
+spacy
+geopy
+geotext
+folium
+streamlit
+streamlit-folium
