@@ -4,7 +4,11 @@ spacy==3.7.2
 geopy==2.4.1
 streamlit==1.29.0
 folium==0.15.1
-psycopg2-binary==2.9.9
 pandas==2.2.2
 requests==2.31.0
 beautifulsoup4==4.12.2
+scikit-learn==1.5.1
+aiohttp==3.9.5
+joblib==1.4.2
+lxml_html_clean==0.2.0
+streamlit-folium==0.15.0
