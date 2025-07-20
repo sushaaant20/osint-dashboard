@@ -1,29 +1,60 @@
-# 🇵🇰 Pakistan OSINT Intelligence Dashboard
+OSINT Dashboard
+An advanced OSINT dashboard for scraping, classifying, and visualizing news articles from Pakistan-based sites using machine learning and concurrent processing.
+Features
 
-This is an open-source, research-focused project aimed at building an OSINT (Open Source Intelligence) dashboard for monitoring security events in Pakistan using publicly available news sources.
+Scrapes articles from 10 Pakistan-based news sites using aiohttp and newspaper3k.
+Classifies articles (Terrorism, Politics, Other) with a scikit-learn logistic regression model.
+Extracts and geocodes locations using spaCy and geopy, with caching in SQLite.
+Stores data in SQLite (osint.db).
+Visualizes articles with Streamlit and Folium, including category/date filters and a map.
 
-## 🔍 Project Goals
+Setup on Fedora Linux
 
-- Scrape Pakistani news websites for latest articles (without using APIs)
-- Detect and flag articles mentioning terror attacks, IED blasts, and other security incidents
-- Perform basic NLP-based alert classification (e.g., "Suicide Attack", "IED", "Clash")
-- Extract geographic locations and display them on an interactive map
-- Build a clean, minimal UI dashboard using Streamlit
+Clone the repository:git clone https://github.com/yourusername/osint-dashboard.git
+cd osint-dashboard
 
-## 🚧 In Development
 
-This is a work-in-progress project aimed at researchers and analysts focusing on South Asia. In later phases, it will cover:
+Set up a virtual environment:python3 -m venv venv
+source venv/bin/activate
 
-- Jammu & Kashmir
-- India's Northeast region
-- Military deployment and border incidents
-- Historical timeline view
 
-## ⚙️ Tech Stack
+Install dependencies:sudo dnf install python3 python3-pip sqlite -y
+pip install -r requirements.txt
+python3 -m nltk.downloader punkt
+python3 -m spacy download en_core_web_sm
 
-- Python
-- newspaper3k
-- spaCy / NLTK
-- geopy, GeoText, folium
-- Streamlit (for frontend)
+
+Train the ML model:python -c "from app.nlp_classifier import train_classifier; train_classifier()"
+
+
+Run the dashboard:streamlit run dashboard.py
+
+
+
+Project Structure
+osint-dashboard/
+├── app/
+│   ├── config.py           # Configuration
+│   ├── scraper.py          # Concurrent scraping
+│   ├── nlp_classifier.py   # ML classification
+│   ├── geo_locator.py      # Location extraction
+│   ├── data_store.py       # SQLite storage
+├── dashboard.py            # Streamlit app
+├── train_data.csv         # ML training data
+├── requirements.txt        # Dependencies
+├── .gitignore             # Ignores
+└── README.md              # Documentation
+
+Usage
+
+Open http://localhost:8501 in your browser.
+Click "Scrape News" to fetch and process articles.
+Use filters to view articles by category or date range.
+Export articles to CSV with the "Export Articles" button.
+
+Notes
+
+Expand train_data.csv with more labeled articles for better ML accuracy.
+Respect news sites’ terms by limiting scraping frequency.
+Cache geocoding results to reduce geopy API calls.
 

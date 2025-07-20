@@ -1,4 +1,7 @@
 __pycache__/
 *.pyc
 .env
-.DS_Store
+*.db
+*.sqlite3
+model/
+articles.csv
