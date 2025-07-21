@@ -5,3 +5,5 @@ __pycache__/
 *.sqlite3
 model/
 articles.csv
+raw_articles.csv
+train_data.csv
